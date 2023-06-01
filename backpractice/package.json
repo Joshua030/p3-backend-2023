@@ -1,22 +1,35 @@
 {
-  "name": "rest-express",
+  "name": "forums-api-ts-express-prisma-postgres",
   "version": "1.0.0",
-  "license": "MIT",
+  "description": "Un servidor de API para un foro hecho en Express, Typescript, Prisma con Postgres",
+  "main": "src/server.ts",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
+  "keywords": [],
+  "author": "pauek",
+  "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^4.13.0",
-    "express": "4.18.2"
+    "@prisma/client": "^4.14.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@types/express": "4.17.17",
-    "@types/node": "18.16.3",
-    "prisma": "^4.13.0",
-    "ts-node": "10.9.1",
-    "typescript": "4.9.5"
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^20.1.1",
+    "nodemon": "^2.0.22",
+    "prisma": "^4.15.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node-esm src/seed.ts"
   }
 }
