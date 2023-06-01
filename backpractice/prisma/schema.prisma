@@ -8,8 +8,33 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  email     String    @unique
   name      String?
+  posts     Post[]
+}
+
+model Post {
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  date         DateTime      @unique
+  favourited   Boolean       @default(false)
+  watched      Boolean       @default(false)
+  title        String
+  url          String
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id])
+  postDetails  PostDetails?
+}
+
+model PostDetails {
+  id            Int      @id @default(autoincrement())
+  postDate      DateTime
+  explanation   String
+  hdurl         String
+  media_type    String
+  service_version String
+  post          Post     @relation(fields: [postId], references: [id])
+  postId        Int      @unique
 }

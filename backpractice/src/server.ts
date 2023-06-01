@@ -17,8 +17,8 @@ app.post('/', async(req, res) => {
   try {
     const newUser = await prisma.user.create({
       data: {
-        name: 'Carlos',
-        email: 'Carlos@prisma.io',
+        name: 'Pedro',
+        email: 'Pedro@prisma.io',
       },
     })
     console.log(newUser);
