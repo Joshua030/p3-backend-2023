@@ -18,7 +18,7 @@ model User {
 model Post {
   id           Int           @id @default(autoincrement())
   createdAt    DateTime      @default(now())
-  date         DateTime      @unique
+  date         String      @unique
   favourited   Boolean       @default(false)
   watched      Boolean       @default(false)
   title        String
@@ -28,13 +28,14 @@ model Post {
   postDetails  PostDetails?
 }
 
+
 model PostDetails {
   id            Int      @id @default(autoincrement())
-  postDate      DateTime
+  postDate      String
   explanation   String
   hdurl         String
   media_type    String
   service_version String
-  post          Post     @relation(fields: [postId], references: [id])
-  postId        Int      @unique
+  post          Post     @relation(fields: [postId], references: [date])
+  postId        String     @unique
 }
