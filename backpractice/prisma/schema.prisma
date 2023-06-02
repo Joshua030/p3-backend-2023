@@ -13,6 +13,7 @@ model User {
   email     String    @unique
   name      String?
   posts     Post[]
+  comments     Comment[]
 }
 
 model Post {
@@ -26,6 +27,7 @@ model Post {
   userId       Int
   user         User          @relation(fields: [userId], references: [id])
   postDetails  PostDetails?
+  comments     Comment[]
 }
 
 
@@ -37,4 +39,15 @@ model PostDetails {
   service_version String
   post          Post     @relation(fields: [postId], references: [date])
   postId        String     @unique
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String
+  postId    Int
+  post      Post     @relation(fields: [commentId], references: [date])
+  commentId String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }

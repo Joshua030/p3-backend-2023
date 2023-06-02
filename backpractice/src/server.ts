@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import prisma from "./prisma-client.js";
+import users from "./users.js";
 
 interface Post {
   copyright: string;
@@ -21,6 +22,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+app.use("/users", users);
+
 
 app.get("/", async (req: Request, res: Response) => {
   try {
