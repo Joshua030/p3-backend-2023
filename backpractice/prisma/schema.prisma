@@ -31,7 +31,6 @@ model Post {
 
 model PostDetails {
   id            Int      @id @default(autoincrement())
-  postDate      String
   explanation   String
   hdurl         String
   media_type    String
