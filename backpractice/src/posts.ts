@@ -90,6 +90,32 @@ router.put('/', async (req: Request, res: Response) => {
   }
 });
 
+router.delete('/', async (req: Request, res: Response) => {
+  const {userId,date} = req.body
+  const id = Number(userId)
+  if (isNaN(id)) return res.status(400).send ('Id must be a Number!');
+ 
+  try {
+      const user = await prisma.user.findUnique({
+        where: {
+          id
+        },
+      });
+      if (!user) return res.status(404).send("{User is not created}");
+    
+const deleteUser = await prisma.post.delete({
+  where: {
+    id,
+    date
+  },
+})
+
+    res.status(200).json({ message: `post ${deleteUser.id} was Deleted` });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 export default router;
